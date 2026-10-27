@@ -1,0 +1,46 @@
+.button {
+  min-width: 120px;
+  padding: 15px 24px;
+  border: none;
+  border-radius: 28px;
+  background: #ffda36;
+  color: #222;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #d4ad19;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.button:focus-visible {
+  outline: 2px solid #222;
+  outline-offset: 4px;
+}
+
+.button_secondary {
+  background: #666;
+  color: #fff;
+  box-shadow: 0 4px 0 #444;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    background: #ffe36a;
+    transform: translateY(-1px);
+  }
+
+  .button_secondary:hover {
+    background: #777;
+  }
+}
+
+.button:active,
+.button_secondary:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 transparent;
+}

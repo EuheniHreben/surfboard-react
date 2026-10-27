@@ -1,0 +1,260 @@
+.team {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  h2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    top: 12%;
+  }
+}
+
+.team__list {
+  display: flex;
+  justify-content: center;
+  min-height: 0;
+  gap: clamp(12px, 2vw, 20px);
+  margin-top: 120px;
+}
+
+.team__item {
+  cursor: pointer;
+  flex: 0 1 25%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.team__name {
+  width: 100%;
+  font-size: clamp(14px, 1.5vw, 18px);
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  white-space: normal;
+  &:after {
+    content: "";
+    display: block;
+    z-index: 1000;
+    margin-left: 8px;
+    cursor: pointer;
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(-135deg);
+    transition: transform 0.2s linear;
+  }
+}
+
+.team__item.active .team__name {
+  &::after {
+    transform: rotate(45deg);
+    border-width: 0 3px 3px 0;
+  }
+}
+
+.team__img {
+  margin-bottom: 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.team__item.active .team__img {
+  box-shadow: 0 20px 38px rgba(0, 0, 0, 0.12);
+  transform: translateY(-6px) scale(1.1);
+}
+
+.team__desc {
+  height: 0;
+  cursor: pointer;
+  overflow: hidden;
+  opacity: 0;
+  transform: scaleY(0.8);
+  transform-origin: top;
+  transition:
+    height 0.2s ease-in-out,
+    opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.team__item.active .team__desc {
+  height: 100px;
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.team__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
+.team__role {
+  font-weight: 600;
+}
+
+.team__text {
+  color: #666666a8;
+}
+
+.team__accordion {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .team {
+    padding-top: 20px;
+    padding-bottom: 36px;
+    height: auto;
+    min-height: 100dvh;
+    box-sizing: border-box;
+    overflow: visible;
+  }
+
+  .team h2 {
+    position: static;
+    margin-bottom: 8px;
+  }
+
+  .team__list--desktop {
+    display: none;
+  }
+
+  .team__accordion {
+    display: block;
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 20px 16px 8px;
+    box-sizing: border-box;
+    border-radius: 20px;
+  }
+
+  .team__featured {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 24px;
+  }
+
+  .team__featured-img {
+    display: block;
+    width: 230px;
+    max-width: 80%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 12px;
+  }
+
+  .team__featured-name {
+    margin: 0 0 12px;
+    font-size: 18px;
+  }
+
+  .team__featured-role {
+    margin: 0 0 12px;
+    font-size: 14px;
+  }
+
+  .team__featured-text {
+    max-width: 400px;
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .team__list--accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .team__row {
+    flex: none;
+    width: 100%;
+    border-top: 1px solid #e3e3e3;
+  }
+
+  .team__row-button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 16px 0;
+    color: inherit;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+
+  .team__row-img {
+    display: block;
+    flex: 0 0 64px;
+    width: 64px;
+    height: 64px;
+    margin: 0;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  .team__row-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .team__row-name {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .team__row-role {
+    font-size: 13px;
+    line-height: 1.35;
+    color: #777;
+  }
+
+  .team__row-arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .team h2 {
+    top: 24px;
+  }
+
+  .team__accordion {
+    padding: 16px 12px 4px;
+  }
+}

@@ -1,0 +1,282 @@
+.boards {
+  padding: 80px 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #f8faf9;
+}
+
+.boards__viewport {
+  width: 100%;
+  overflow: hidden;
+}
+
+.boards__list {
+  display: flex;
+  width: 100%;
+  transition: transform 0.4s ease-in-out;
+}
+
+.boards__item {
+  flex: 0 0 100%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 4vw, 60px);
+  width: 100%;
+}
+
+.boards__img-box {
+  flex: 0 0 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.boards__img {
+  display: block;
+  width: 100%;
+  max-height: 520px;
+  object-fit: contain;
+  background: #f8faf9;
+}
+
+.boards__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.boards__title {
+  margin-bottom: 24px;
+  font-size: 36px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.boards__desc {
+  margin-bottom: 28px;
+  color: #666;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.boards__specs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px 24px;
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.boards__spec {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.boards__spec-name {
+  color: #888;
+  font-size: 14px;
+}
+
+.boards__spec-value {
+  color: #292929;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.boards__footer {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  width: 100%;
+}
+
+.boards__price {
+  font-size: 30px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.boards__btn {
+  flex-shrink: 0;
+}
+
+.boards__controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 30px;
+  margin-bottom: 8px;
+}
+
+.boards__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid #fedb3f;
+  box-shadow: 0px 3px #c5aa30;
+  border-radius: 50%;
+  background: #fedb3f;
+  font-size: 24px;
+  cursor: pointer;
+  position: relative;
+  top: 0;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  &:active {
+    top: 3px;
+    box-shadow: 0px 1px #c5aa30;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .boards__arrow:hover {
+    background: #ffe36a;
+    transform: translateY(-1px);
+  }
+}
+
+.boards__arrow:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #d4ad19;
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .boards {
+    padding: 24px 0;
+  }
+
+  .boards__item {
+    gap: 8px;
+  }
+
+  .boards__img {
+    max-height: 280px;
+  }
+
+  .boards__title {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .boards__desc {
+    font-size: 13px;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+
+  .boards__specs {
+    gap: 8px 16px;
+    margin-bottom: 16px;
+  }
+
+  .boards__spec {
+    gap: 2px;
+  }
+
+  .boards__spec-name {
+    font-size: 12px;
+  }
+
+  .boards__spec-value {
+    font-size: 14px;
+  }
+
+  .boards__footer {
+    gap: 20px;
+  }
+
+  .boards__price {
+    font-size: 24px;
+  }
+
+  .boards__controls {
+    margin-top: 20px;
+  }
+
+  .boards__arrow {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+@media (max-width: 480px) {
+  .boards {
+    padding: 24px 0;
+  }
+
+  .boards__item {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .boards__img-box {
+    flex: none;
+    width: 100%;
+  }
+
+  .boards__img {
+    width: 100%;
+    max-height: 200px;
+  }
+
+  .boards__info {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .boards__title {
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+
+  .boards__desc {
+    font-size: 14px;
+    line-height: 1.35;
+    margin-bottom: 12px;
+  }
+
+  .boards__specs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px 4px;
+    margin-bottom: 8px;
+  }
+
+  .boards__spec {
+    align-items: center;
+    text-align: center;
+    gap: 3px;
+  }
+
+  .boards__spec-name {
+    font-size: 12px;
+  }
+
+  .boards__spec-value {
+    font-size: 14px;
+  }
+
+  .boards__footer {
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .boards__price {
+    font-size: 26px;
+  }
+
+  .boards__controls {
+    margin-top: 12px;
+    margin-bottom: 8px;
+  }
+}

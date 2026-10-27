@@ -1,0 +1,44 @@
+.hero {
+  color: #fff;
+  padding-top: 30px;
+  position: relative;
+  padding-bottom: 60px;
+  background: url("../../assets/images/background/bg.jpg") center center / cover no-repeat;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+}
+
+.hero .header,
+.hero .title h1,
+.hero .title p,
+.hero .title__btn,
+.hero .features__item {
+  animation-play-state: paused;
+}
+
+.hero--ready .header,
+.hero--ready .title h1,
+.hero--ready .title p,
+.hero--ready .title__btn,
+.hero--ready .features__item {
+  animation-play-state: running;
+}
+
+.title h1,
+.title p,
+.title__btn {
+  opacity: 0;
+  animation: hero-reveal 2s ease-out forwards;
+}
+
+.hero--ready .title h1,
+.hero--ready .title p,
+.hero--ready .title__btn {
+  opacity: 0;
+  animation: hero-reveal 2s ease-out forwards;
+}

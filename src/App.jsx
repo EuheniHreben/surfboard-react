@@ -9,6 +9,7 @@ import Video from "./components/Video/Video.jsx";
 import Form from "./components/Form/Form.jsx";
 import Contacts from "./components/Contacts/Contacts.jsx";
 import Preloader from "./components/Preloader/Preloader.jsx";
+import heroBackground from "./assets/images/background/bg.jpg";
 
 function App() {
   const [selectedBoard, setSelectedBoard] = useState("");
@@ -57,18 +58,48 @@ function App() {
   }, [isLoading]);
 
   useEffect(() => {
-    const fillTimer = setTimeout(() => {
-      const hero = document.querySelector('[data-section-id="hero"]');
+    const startTime = Date.now();
+    let isCancelled = false;
 
-      if (hero) {
-        hero.scrollIntoView({ behavior: "smooth" });
+    const heroImage = new Image();
+    heroImage.src = heroBackground;
+
+    const imageLoaded = new Promise((resolve) => {
+      if (heroImage.complete) {
+        resolve(true);
+        return;
       }
 
-      setIsHeroReady(true);
-      setIsExiting(true);
-    }, 3100);
+      heroImage.onload = () => resolve(true);
+      heroImage.onerror = () => resolve(false);
+    });
 
-    return () => clearTimeout(fillTimer);
+    const animationFinished = new Promise((resolve) => {
+      setTimeout(resolve, 3100);
+    });
+
+    Promise.all([imageLoaded, animationFinished]).then(() => {
+      if (isCancelled) return;
+
+      const remainingTime = Math.max(0, 3100 - (Date.now() - startTime));
+
+      setTimeout(() => {
+        if (isCancelled) return;
+
+        const hero = document.querySelector('[data-section-id="hero"]');
+
+        if (hero) {
+          hero.scrollIntoView({ behavior: "smooth" });
+        }
+
+        setIsHeroReady(true);
+        setIsExiting(true);
+      }, remainingTime);
+    });
+
+    return () => {
+      isCancelled = true;
+    };
   }, []);
 
   const scrollToSection = (id) => {

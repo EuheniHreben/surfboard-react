@@ -1,7 +1,7 @@
-import board1 from "../../assets/images/board1.png";
-import board2 from "../../assets/images/board2.png";
-import board3 from "../../assets/images/board3.png";
-import board4 from "../../assets/images/board4.png";
+import board1 from "../../assets/images/board1.webp";
+import board2 from "../../assets/images/board2.webp";
+import board3 from "../../assets/images/board3.webp";
+import board4 from "../../assets/images/board4.webp";
 
 export const boards = [
   {

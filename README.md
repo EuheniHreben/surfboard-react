@@ -2,7 +2,7 @@
 
 A high-performance, fully responsive web application built with **React**, **Vite**, and **SCSS**. This project features custom multimedia integrations, advanced interactive UI components, and modular style architecture.
 
-![Website Preview](./preview.png) 
+[![Website Preview](./preview.png)](https://euhenihreben.github.io/surfboard-react/)
 
 ---
 

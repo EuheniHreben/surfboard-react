@@ -1,5 +1,5 @@
 import "./Preloader.scss";
-import logo from "../../assets/images/background/logo-preloader.png";
+import logo from "../../assets/images/background/logo-preloader.webp";
 
 function Preloader({ preloaderRef, isExiting, onExitEnd }) {
   return (

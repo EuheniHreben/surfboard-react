@@ -104,10 +104,100 @@
 }
 
 .form__option {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 13px;
+  gap: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+  color: rgba(255, 255, 255, 0.85);
+  transition: color 0.25s ease;
+
+  &:hover {
+    color: #fff;
+
+    input {
+      border-color: #ffda36;
+      background-color: rgba(255, 255, 255, 0.14);
+    }
+  }
+
+  input {
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+
+    transition:
+      background-color 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease,
+      transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    &:active {
+      transform: scale(0.9);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255, 218, 54, 0.35);
+    }
+
+    &:checked {
+      border-color: #ffda36;
+      background-color: #ffda36;
+      box-shadow: 0 0 12px rgba(255, 218, 54, 0.35);
+    }
+  }
+}
+
+&:has(input:checked) {
+  color: #fff;
+}
+
+input[type="radio"] {
+  border-radius: 50%;
+
+  &::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #222;
+    transform: scale(0);
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  &:checked::before {
+    transform: scale(1);
+  }
+}
+
+input[type="checkbox"] {
+  border-radius: 5px;
+
+  &::before {
+    content: "";
+    width: 10px;
+    height: 6px;
+    border-left: 2px solid #222;
+    border-bottom: 2px solid #222;
+    transform: rotate(-45deg) scale(0);
+    margin-top: -2px;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  &:checked::before {
+    transform: rotate(-45deg) scale(1);
+  }
 }
 
 .form__actions {

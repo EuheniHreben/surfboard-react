@@ -75,19 +75,62 @@ function BoardsList({ items, onOrder }) {
       </ul>
       <div className="boards__controls">
         <button
-          className="boards__arrow"
+          type="button"
+          className="boards__arrow boards__arrow--prev"
           onClick={handlePrev}
           aria-label="Предыдущая доска"
         >
-          ←
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M15 18L9 12L15 6"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </button>
 
+        <div className="boards__dots" role="tablist" aria-label="Выбор доски">
+          {items.map((item, index) => (
+            <button
+              key={item.id}
+              type="button"
+              className={`boards__dot ${index === currentIndex ? "active" : ""}`}
+              onClick={() => setCurrentIndex(index)}
+              aria-label={`Показать ${item.title}`}
+              aria-selected={index === currentIndex}
+            />
+          ))}
+        </div>
+
         <button
-          className="boards__arrow"
+          type="button"
+          className="boards__arrow boards__arrow--next"
           onClick={handleNext}
           aria-label="Следующая доска"
         >
-          →
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M9 18L15 12L9 6"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </button>
       </div>
     </div>

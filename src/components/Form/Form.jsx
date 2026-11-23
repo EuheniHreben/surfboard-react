@@ -14,9 +14,7 @@ function Form({ selectedBoard, setSelectedBoard }) {
   const [payment, setPayment] = useState("");
   const [noCall, setNoCall] = useState(false);
 
-  const handleClear = (e) => {
-    e.preventDefault();
-
+  const resetForm = () => {
     setName("");
     setPhone("");
     setStreet("");
@@ -29,14 +27,24 @@ function Form({ selectedBoard, setSelectedBoard }) {
     setSelectedBoard("");
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleClear = (e) => {
+    e.preventDefault();
+    resetForm();
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
     if (!name.trim()) {
       return;
     }
 
     setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    resetForm();
   };
 
   return (
@@ -193,9 +201,7 @@ function Form({ selectedBoard, setSelectedBoard }) {
             </div>
           </div>
         </form>
-        {isModalOpen && (
-          <Modal name={name.trim()} onClose={() => setIsModalOpen(false)} />
-        )}
+        {isModalOpen && <Modal name={name.trim()} onClose={handleCloseModal} />}
       </div>
     </section>
   );

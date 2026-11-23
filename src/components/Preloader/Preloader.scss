@@ -11,7 +11,7 @@
   justify-content: center;
 
   overflow: hidden;
-  background: #000;
+  background: radial-gradient(circle at center, #161614 0%, #080808 75%);
 
   scroll-snap-align: start;
   scroll-snap-stop: always;
@@ -19,38 +19,108 @@
 
 .preloader__logo {
   position: relative;
-  width: min(70vw, 560px);
+  width: min(65vw, 480px);
+
+  animation: logo-entrance 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
 }
 
 .preloader__logo-white {
   display: block;
   width: 100%;
   height: auto;
+  opacity: 0.22;
 }
 
 .preloader__fill {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  clip-path: inset(0 100% 0 0);
-  animation: logo-fill 3s ease-in-out forwards;
+
+  // Маска строго по форме букв логотипа
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+
+  filter: drop-shadow(0 0 24px rgba(254, 219, 63, 0.25));
 }
 
-.preloader__fill img {
-  display: block;
-  width: 100%;
-  height: auto;
-  filter: brightness(0) saturate(100%) invert(82%) sepia(94%) saturate(1200%)
-    hue-rotate(350deg) brightness(103%);
+// Слой-волна, который поднимается снизу вверх
+.preloader__wave {
+  position: absolute;
+  left: -50%;
+  width: 200%;
+  aspect-ratio: 1 / 1;
+  top: 100%; // Начинаем ниже логотипа
+  animation: wave-rise 4.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+
+  // Две вращающиеся скруглённые «волны» разной скорости для объёма
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #fedb3f;
+  }
+
+  &::before {
+    border-radius: 42% 48% 45% 40%;
+    animation: wave-spin 5s linear infinite;
+  }
+
+  &::after {
+    border-radius: 46% 38% 44% 48%;
+    opacity: 0.65;
+    animation: wave-spin 6.5s linear infinite reverse;
+  }
 }
 
 .preloader--exit {
-  animation: preloader-exit 1s ease-in-out forwards;
+  animation: preloader-exit 1.3s cubic-bezier(0.76, 0, 0.24, 1) 0.15s forwards;
+
+  .preloader__logo {
+    animation: logo-exit 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+  }
 }
 
-@keyframes logo-fill {
+// Подъём уровня воды от низа до полного заполнения
+@keyframes wave-rise {
+  0% {
+    top: 105%;
+  }
+  100% {
+    top: -115%; // Поднимаем с запасом, чтобы скруглённые края полностью скрылись выше букв
+  }
+}
+
+// Вращение, создающее эффект колыхания поверхности воды
+@keyframes wave-spin {
+  from {
+    transform: rotate(0deg);
+  }
   to {
-    clip-path: inset(0 0 0 0);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes logo-entrance {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes logo-exit {
+  to {
+    opacity: 0;
+    transform: scale(0.95) translateY(-30px);
   }
 }
 
@@ -61,11 +131,13 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .preloader__fill {
+  .preloader__logo,
+  .preloader__wave {
     animation-duration: 0.4s;
   }
 
   .preloader--exit {
     animation-duration: 0.3s;
+    animation-delay: 0s;
   }
 }

@@ -19,8 +19,14 @@ function Preloader({ preloaderRef, isExiting, onExitEnd }) {
       <div className="preloader__logo">
         <img className="preloader__logo-white" src={logo} alt="Surfboard" />
 
-        <div className="preloader__fill">
-          <img src={logo} alt="" aria-hidden="true" />
+        <div
+          className="preloader__fill"
+          style={{
+            WebkitMaskImage: `url(${logo})`,
+            maskImage: `url(${logo})`,
+          }}
+        >
+          <div className="preloader__wave" />
         </div>
       </div>
     </section>
